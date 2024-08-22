@@ -15,11 +15,15 @@ public class NetworkManagerUI : MonoBehaviour
         hostBtn.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.StartHost();
+            hostBtn.gameObject.SetActive(false);
+            clientBtn.gameObject.SetActive(false);
         });
         
         clientBtn.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.StartClient();
+            clientBtn.gameObject.SetActive(false);
+            hostBtn.gameObject.SetActive(false);
         });
     }
 }
