@@ -20,20 +20,16 @@ public class Bullet : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void RequestPlayerHitServerRpc(ulong playerNetworkObjectId)
     {
         if (IsServer)
         {
-            NetworkObject playerNetworkObject = NetworkManager.Singleton.SpawnManager.SpawnedObjects[playerNetworkObjectId];
-            
-            Debug.Log("Player hit! Client ID: " + playerNetworkObject.OwnerClientId);
-            
             NetworkObject.Despawn();
         }
     }
-    
-    [ServerRpc]
+
+    [ServerRpc(RequireOwnership = false)]
     private void RequestBulletHitServerRpc()
     {
         if (IsServer)
@@ -41,4 +37,5 @@ public class Bullet : NetworkBehaviour
             NetworkObject.Despawn();
         }
     }
+
 }
